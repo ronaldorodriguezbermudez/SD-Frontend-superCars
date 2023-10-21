@@ -45,13 +45,7 @@
         </button>
       </div>
     </div>
-    <div class="row">
-      <div class="twelve columns">
-        <button disabled="disabled" class="button-primary">
-          Copyright (c) 2023 - Ronaldo Rodriguez | Brandon Rodriguez
-        </button>
-      </div>
-    </div>
+
     <div v-if="queueMessage" class="row">
       <div class="twelve columns">
         <p>{{ queueMessage }}</p>
