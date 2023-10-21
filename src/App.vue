@@ -1,21 +1,48 @@
 <template>
   <div id="app" class="container">
     <div class="row" style="margin-top: 15px">
-      <router-link class="three columns button button-primary" to="/">Home</router-link>
-      <router-link class="three columns button button-primary" to="/model">Models</router-link>
-      <router-link class="three columns button button-primary" to="/designer">Designers</router-link>
-      <router-link class="three columns button button-primary" to="/manufacturer">Manufacturers</router-link>
+      <router-link class="three columns button button-primary" to="/"
+        >Home</router-link
+      >
+      <router-link class="three columns button button-primary" to="/model"
+        >Models</router-link
+      >
+      <router-link class="three columns button button-primary" to="/designer"
+        >Designers</router-link
+      >
+      <router-link
+        class="three columns button button-primary"
+        to="/manufacturer"
+        >Manufacturers</router-link
+      >
     </div>
     <router-view />
-    <div class="row" style="margin-top: auto;"> <!-- Align to the bottom -->
-      <div class="four columns"> <!-- Divide the width into three equal parts -->
-        <button class="button button-primary" @click="runQueue('modelTasks', 'Models')">Run Queues Models</button>
+    <div class="row" style="margin-top: auto">
+      <!-- Align to the bottom -->
+      <div class="four columns">
+        <!-- Divide the width into three equal parts -->
+        <button
+          class="button button-primary"
+          @click="runQueue('modelTasks', 'Models')"
+        >
+          Run Queues Models
+        </button>
       </div>
       <div class="four columns">
-        <button class="button button-primary" @click="runQueue('designerTasks', 'Designers')">Run Queues Designers</button>
+        <button
+          class="button button-primary"
+          @click="runQueue('designerTasks', 'Designers')"
+        >
+          Run Queues Designers
+        </button>
       </div>
       <div class="four columns">
-        <button class="button button-primary" @click="runQueue('manufacturerTasks', 'Manufacturers')">Run Queues Manufacturers</button>
+        <button
+          class="button button-primary"
+          @click="runQueue('manufacturerTasks', 'Manufacturers')"
+        >
+          Run Queues Manufacturers
+        </button>
       </div>
     </div>
     <div class="row">
@@ -43,7 +70,9 @@ export default {
   },
   methods: {
     runQueue(queueName, queueDisplayName) {
-      fetch(`https://proyecto2-sd-backend.netlify.app/.netlify/functions/${queueName}`)
+      fetch(
+        `https://proyecto2-sd-backend.netlify.app/.netlify/functions/${queueName}`
+      )
         .then((response) => {
           if (response.ok) {
             this.queueMessage = `${queueDisplayName} queue has run.`;
@@ -68,6 +97,3 @@ export default {
   },
 };
 </script>
-
-
-
