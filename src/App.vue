@@ -13,7 +13,7 @@
    <router-view />
    <div class="row"  style="margin-top: 15px">
       <router-link class="three columns button button-primary" 
-        to="/https://proyecto2-sd-backend.netlify.app/.netlify/functions/modelTasks">Run Queues Models</router-link>
+        to="https://proyecto2-sd-backend.netlify.app/.netlify/functions/modelTasks">Run Queues Models</router-link>
       <router-link class="three columns button button-primary" 
         to="/designer">Designers</router-link>
       <router-link class="three columns button button-primary" 
