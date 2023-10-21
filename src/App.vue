@@ -7,15 +7,28 @@
       <router-link class="three columns button button-primary" to="/manufacturer">Manufacturers</router-link>
     </div>
     <router-view />
-    <div class="row" style="margin-top: 15px">
-      <button class="three columns button button-primary" @click="runQueue('modelTasks')">Run Queues Models</button>
-      <button class="three columns button button-primary" @click="runQueue('designerTasks')">Run Queues Designers</button>
-      <button class="three columns button button-primary" @click="runQueue('manufacturerTasks')">Run Queues Manufacturers</button>
+    <div class="row" style="margin-top: auto;"> <!-- Align to the bottom -->
+      <div class="four columns"> <!-- Divide the width into three equal parts -->
+        <button class="button button-primary" @click="runQueue('modelTasks', 'Models')">Run Queues Models</button>
+      </div>
+      <div class="four columns">
+        <button class="button button-primary" @click="runQueue('designerTasks', 'Designers')">Run Queues Designers</button>
+      </div>
+      <div class="four columns">
+        <button class="button button-primary" @click="runQueue('manufacturerTasks', 'Manufacturers')">Run Queues Manufacturers</button>
+      </div>
     </div>
     <div class="row">
-      <button disabled="disabled" class="twelve columns button-primary">
-        Copyright (c) 2023 - Ronaldo Rodriguez | Brandon Rodriguez
-      </button>
+      <div class="twelve columns">
+        <button disabled="disabled" class="button-primary">
+          Copyright (c) 2023 - Ronaldo Rodriguez | Brandon Rodriguez
+        </button>
+      </div>
+    </div>
+    <div v-if="queueMessage" class="row">
+      <div class="twelve columns">
+        <p>{{ queueMessage }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -23,26 +36,38 @@
 <script>
 export default {
   name: "App",
+  data() {
+    return {
+      queueMessage: "",
+    };
+  },
   methods: {
-    runQueue(queueName) {
-      // Perform a fetch request to the specified URL
+    runQueue(queueName, queueDisplayName) {
       fetch(`https://proyecto2-sd-backend.netlify.app/.netlify/functions/${queueName}`)
         .then((response) => {
           if (response.ok) {
+            this.queueMessage = `${queueDisplayName} queue has run.`;
+
+            // Clear the message after 3 seconds
+            setTimeout(() => {
+              this.queueMessage = "";
+            }, 3000);
+
             return response.text();
           } else {
             throw new Error("Request failed");
           }
         })
         .then((data) => {
-          // Handle the response data as needed
           console.log(data);
         })
         .catch((error) => {
-          // Handle errors, e.g., show an error message to the user
           console.error("Request error:", error);
         });
     },
   },
 };
 </script>
+
+
+
